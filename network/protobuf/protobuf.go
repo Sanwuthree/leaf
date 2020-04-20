@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/golang/protobuf/proto"
-	"github.com/name5566/leaf/chanrpc"
-	"github.com/name5566/leaf/log"
+	"github.com/Sanwuthree/leaf/chanrpc"
+	"github.com/Sanwuthree/leaf/log"
 	"math"
 	"reflect"
 )
@@ -48,6 +48,8 @@ func (p *Processor) SetByteOrder(littleEndian bool) {
 
 // It's dangerous to call the method on routing or marshaling (unmarshaling)
 func (p *Processor) Register(msg proto.Message) uint16 {
+	msgType1:=reflect.TypeOf(msg)
+	fmt.Println(msgType1)
 	msgType := reflect.TypeOf(msg)
 	if msgType == nil || msgType.Kind() != reflect.Ptr {
 		log.Fatal("protobuf message pointer required")
